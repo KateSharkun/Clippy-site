@@ -3,7 +3,6 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-#https://unpkg.com/clippyts@1.0.4/dist/index.js
 
 @app.route("/",methods=["GET"])
 @app.route("/home",methods=["GET"])
