@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kate Sharkun</title>
+    {% block styles %}
+    <link rel="icon" href="{{url_for('static', filename='img/img.png')}}">
+    <link rel="stylesheet"
+      href="{{url_for('static', filename='node_modules/bootstrap/dist/css/bootstrap.min.css')}}">
+    <link rel="stylesheet"
+      href="{{url_for('static', filename='css/w95.css')}}">
+    <link rel="stylesheet"
+      href="{{url_for('static', filename='css/custom.css')}}">
+{% endblock %}
+</head>
+<body onload="startTime()">
+{% block navbar %}
+<header class="header-global">
+        <nav id="navbar-main" class="navbar d-flex flex-row align-items-center navbar-main navbar-expand-lg navbar-dark justify-content-between">
+            <ul class="navbar-nav navbar-nav-hover flex-row align-items-center">
+                <li class="nav-item">
+                    <a href="/home" class="nav-link" role="button">
+                        <span class="nav-link-inner-text">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/about" class="nav-link" role="button">
+                        <span class="nav-link-inner-text">About</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://github.com/KateSharkun" class="nav-link" role="button">
+                        <span class="nav-link-inner-text"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" height='17px' align='left'>GitHub</span>
+
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://www.linkedin.com/in/kateryna-sharkun-7a1385202/" class="nav-link" role="button">
+                        <span class="nav-link-inner-text"><img src="data:image/png;base64,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" height='17px' align='left'>LinkedIn</span>
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+<div class="my-clippy"></div>
+{% endblock %}
+{% block content %}
+{% endblock %}
+<footer>
+        <nav id="navbar-footer" class="navbar navbar-main navbar-expand-lg navbar-dark justify-content-between navbar-footer">
+            <ul class="navbar-nav navbar-nav-hover flex-row align-items-center">
+                <li class="nav-item">
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="nav-link" role="button">
+                        <span class="nav-link-inner-text"><img class='start' src="https://win98icons.alexmeub.com/images/start-button.png" height='17px' align='center'></span>
+                    </a>
+                </li>
+
+            </ul>
+            <div class="time text-center" id="time">
+                <span class="time text-uppercase"></span>
+            </div>
+        </nav>
+    </footer>
+{% block scripts %}
+<script type="text/javascript">
+function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('time').innerHTML =
+        h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+    }
+</script>
+<script src="{{url_for('static', filename='node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
+<script src="{{url_for('static', filename='node_modules/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{url_for('static', filename='node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/w95.js')}}"></script>
+<script src="{{url_for('static', filename='clippy/clippy.min.js')}}"></script>
+<script type="text/javascript">
+          let myAgent;
+          var count = 0;
+          start('Clippy')
+          function start(arg) {
+            $('.clippy').remove()
+            clippy.load(arg, function(agent){
+              // do anything with the loaded agent
+              agent.show();
+              const quotes = ["We interrupt this program to annoy you and make things generally more irritating.",
+              "But kids were different in them days! They didn't have their heads filled with all this Cartesian Dualism!",
+              "My brain hurts!",
+              "Whenever I'm about to do something, I think, 'Would an idiot do that?' And if they would, I do not do that thing.",
+              "I guess I've been working so hard, I forgot what it's like to be hardly working.",
+              "Powerpoints are the peacocks of the business world; all show, no meat.",
+              "Are you suggesting that coconuts migrate?",
+              "Blessed are the cheesemakers!",
+              "It's nothing very special. Try to be nice to people, avoid eating fat, read a good book every now and then, get some walking in, and try and live together in peace and harmony with people of all creeds and nations.",
+              "If I don't get a piece of cake now I will die!"];
+                var quote = quotes[Math.floor(Math.random() * 10)];
+                console.log(quote);
+                //agent.moveTo(1200,580)
+                agent.speak(quote);
+              agent.animations();
+              setTimeout(donothing,1)
+              myAgent = agent;
+              createButtons();
+              if (count==0) {
+                createAgentButtons()
+                count++
+              }
+            });
+          }
+          function createButtons() {
+            animations.sort(function(a, b) {
+              let nameA = a.toLowerCase();
+              let nameB = b.toLowerCase();
+              if (nameA < nameB) {
+                return -1;
+              }
+              if (nameA > nameB) {
+                return 1;
+              }
+              return 0;
+            });
+            console.log("create actions")
+            for (let i = 0; i < animations.length; i++) {
+              let button = document.createElement("button");
+              button.innerHTML = animations[i];
+              button.className = "my-button";
+              // button.onclick = function() {
+              //   myAgent.play(animations[i]);
+              // };
+              var name = animations[i];
+              button.setAttribute("onclick", "myAgent.play('" + name + "')");
+              document.getElementsByClassName('actions')[0].appendChild(button);
+            }
+          }
+          function createAgentButtons() {
+            for (let i = 0; i < agents.length; i++) {
+              let button = document.createElement("button");
+              button.innerHTML = agents[i];
+              button.onclick = function() {
+                start(agents[i]);
+              };
+              document.getElementsByClassName('agents')[0].appendChild(button);
+            }
+          }
+        </script>
+{% endblock %}
+</body>
+</html>

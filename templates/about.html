@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+<!-- <img style="vertical-align:middle" src="https://via.placeholder.com/60x60" alt="A grey image showing text 60 x 60">
+  <span style="">And I know how to exit vim.</span> -->
+</head>
+<body>
+
+{% extends "base.html" %}
+{% block content %}
+      <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="mt-5 mb-5 mt-md-0">
+                            <h4 class="my-5" style="opacity:0">hi</h4>
+                            <div class="p-5 bg-secondary">
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
+                                            role="tab" aria-controls="home" aria-selected="true">About me</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
+                                            role="tab" aria-controls="profile" aria-selected="false">Education</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact"
+                                            role="tab" aria-controls="contact" aria-selected="false">Documents</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane show active" id="home" role="tabpanel"
+                                        aria-labelledby="home-tab">
+                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta voluptatem
+                                            nam ut temporibus corporis dolorem dolores accusamus deserunt veniam eius
+                                            maiores suscipit veritatis necessitatibus voluptatum incidunt repellendus
+                                            eligendi, consequatur rem?</p>
+                                        <button class="btn btn-sm mr-2 btn-primary border-dark" type="button">
+                                            <span class="btn-text">Show Other Options</span>
+                                        </button>
+                                    </div>
+                                    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur earum
+                                            consequuntur accusamus reprehenderit quae sint, quia eligendi sed quidem
+                                            neque omnis odit suscipit dolorum corrupti minima quas temporibus recusandae
+                                            vel.</p>
+                                        <button class="btn btn-sm mr-2 btn-secondary border-dark" type="button">
+                                            <span class="btn-text">Show Other Options</span>
+                                        </button>
+                                    </div>
+                                    <div class="tab-pane" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea ad tempora, quam
+                                            quisquam, neque possimus ducimus eligendi cumque ipsum autem nam magnam
+                                            atque, ipsam sint inventore repellat iste sunt harum!</p>
+                                        <button class="btn btn-sm mr-2 btn-tertiary border-dark" type="button">
+                                            <span class="btn-text">Show Other Options</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}
+
+</body>
+</html>
+

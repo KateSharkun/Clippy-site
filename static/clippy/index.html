@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+
+    <style>
+        .smore-bar {
+    height: 40px;
+    background: #203a56;
+    text-align: center;
+    position: absolute;
+    width:100%;
+    bottom:0;
+}
+
+.smore-bar img {
+    display: inline-block;
+    position: relative;
+    top: -4px;
+}
+
+.clippy, .clippy-balloon {
+    position: fixed;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.clippy-balloon {
+
+    background: #FFC;
+    color: black;
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 5px;
+
+}
+
+.clippy-content {
+    max-width: 200px;
+    min-width: 120px;
+    font-family: "Microsoft Sans", sans-serif;
+    font-size: 10pt;
+}
+
+.clippy-tip {
+    width: 10px;
+    height: 16px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAgCAMAAAAlvKiEAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAlQTFRF///MAAAA////52QwgAAAAAN0Uk5T//8A18oNQQAAAGxJREFUeNqs0kEOwCAIRFHn3//QTUU6xMyyxii+jQosrTPkyPEM6IN3FtzIRk1U4dFeKWQiH6pRRowMVKEmvronEynkwj0uZJgR22+YLopPSo9P34wJSamLSU7lSIWLJU7NkNomNlhqxUeAAQC+TQLZyEuJBwAAAABJRU5ErkJggg==) no-repeat;
+    position: absolute;
+}
+
+.clippy-top-left .clippy-tip {
+    top: 100%;
+    margin-top: 0px;
+    left: 100%;
+    margin-left: -50px;
+}
+
+.clippy-top-right .clippy-tip {
+    top: 100%;
+    margin-top: 0px;
+    left: 0;
+    margin-left: 50px;
+    background-position: -10px 0;
+
+}
+
+.clippy-bottom-right .clippy-tip {
+    top: 0;
+    margin-top: -16px;
+    left: 0;
+    margin-left: 50px;
+    background-position: -10px -16px;
+}
+
+.clippy-bottom-left .clippy-tip {
+    top: 0;
+    margin-top: -16px;
+    left: 100%;
+    margin-left: -50px;
+    background-position: 0px -16px;
+}
+    </style>
+
+
+<body>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="clippy.min.js"></script>
+
+
+
+        <script type="text/javascript">
+          let myAgent;
+          var count = 0;
+          start('Clippy')
+
+          function start(arg) {
+            $('.clippy').remove()
+            removeButtons()
+
+
+            clippy.load(arg, function(agent){
+              // do anything with the loaded agent
+              agent.show();
+              const quotes = ["We interrupt this program to annoy you and make things generally more irritating.",
+              "But kids were different in them days! They didn't have their heads filled with all this Cartesian Dualism!",
+              "My brain hurts!",
+              "Whenever I'm about to do something, I think, 'Would an idiot do that?' And if they would, I do not do that thing.",
+              "I guess I've been working so hard, I forgot what it's like to be hardly working.",
+              "Powerpoints are the peacocks of the business world; all show, no meat.",
+              "Are you suggesting that coconuts migrate?",
+              "Blessed are the cheesemakers!",
+              "It's nothing very special. Try to be nice to people, avoid eating fat, read a good book every now and then, get some walking in, and try and live together in peace and harmony with people of all creeds and nations.",
+              "If I don't get a piece of cake now I will die!"];
+var quote = quotes[Math.floor(Math.random() * 10)];
+console.log(quote);
+
+
+agent.speak(quote);
+
+              agent.animations();
+              setTimeout(donothing,1)
+              agent.moveTo(150,500);
+
+              myAgent = agent;
+
+
+              createButtons();
+
+              if (count==0) {
+                createAgentButtons()
+                count++
+              }
+            });
+          }
+
+          function createButtons() {
+            animations.sort(function(a, b) {
+              let nameA = a.toLowerCase();
+              let nameB = b.toLowerCase();
+              if (nameA < nameB) {
+                return -1;
+              }
+              if (nameA > nameB) {
+                return 1;
+              }
+              return 0;
+            });
+
+            console.log("create actions")
+            for (let i = 0; i < animations.length; i++) {
+              let button = document.createElement("button");
+              button.innerHTML = animations[i];
+              button.className = "my-button";
+              // button.onclick = function() {
+              //   myAgent.play(animations[i]);
+              // };
+              var name = animations[i];
+              button.setAttribute("onclick", "myAgent.play('" + name + "')");
+
+
+              document.getElementsByClassName('actions')[0].appendChild(button);
+            }
+          }
+
+          function createAgentButtons() {
+            for (let i = 0; i < agents.length; i++) {
+              let button = document.createElement("button");
+              button.innerHTML = agents[i];
+              button.onclick = function() {
+                start(agents[i]);
+              };
+              document.getElementsByClassName('agents')[0].appendChild(button);
+            }
+          }
+
+          function removeButtons() {
+            let buttons = document.getElementsByClassName("my-button");
+            while(buttons.length > 0) {
+              buttons[0].remove();
+            }
+          }
+
+
+        </script>
+</body>
